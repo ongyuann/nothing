@@ -14,8 +14,9 @@ def reader(filename):
             match = re.match(pattern,line)
             port_service = ""
             if match:
-                this_line = line.split(' ')
-                port_service = this_line[3]
+                this_line = re.sub(' +',' ',line)
+                this_line = this_line.split(' ')
+                port_service = this_line[2]
                 if re.findall("ssl",port_service):
                     ports_ssl.append(int(line.split('/')[0]))
                 if re.findall("smb",port_service):
