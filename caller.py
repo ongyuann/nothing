@@ -37,7 +37,9 @@ def action_on_list(curr_list):
     with open(curr_list,'r') as list_of_focus:
         ip_add = list_of_focus.readline()
         while ip_add != "":
-            #print (ip_add)
+            print ("\n*****************************************")
+            print ("current list: " + curr_list + " , ip: "+ip_add.rstrip())
+            print ("*****************************************")
             run_nmap_tcp(ip_add,curr_list)
             ip_add = list_of_focus.readline()
     pass
@@ -55,20 +57,18 @@ def run_nmap_tcp(ip_add_of_focus,curr_list):
     os.system(nmap_cmd)
     rn.reader(nmap_output)
     list_of_ssl_ports = rn.output_ssl()
-    print (list_of_ssl_ports)
+    #print (list_of_ssl_ports)
     run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list)
     run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list)
     pass
 
 def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list):
     #print("hello")
-    #print(ip_add_of_focus)
-    #print(list_of_ssl_ports)
     ip_add_of_focus = ip_add_of_focus.rstrip()
     cmd = "sslscan " +ip_add_of_focus+":"
     for ssl_port in list_of_ssl_ports:
         print ("running sslscan on " + ip_add_of_focus + " on port " + str(ssl_port))
-        cmd += ssl_port
+        cmd += str(ssl_port)
         cmd += " > "+curr_list+"_sslscan_"+ip_add_of_focus
         os.system(cmd)
     pass
@@ -79,7 +79,7 @@ def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list):
     cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh " +ip_add_of_focus+":"
     for ssl_port in list_of_ssl_ports:
         print ("running testssl on " + ip_add_of_focus + " on port " + str(ssl_port))
-        cmd += ssl_port
+        cmd += str(ssl_port)
         cmd += " > "+curr_list+"_testssl_"+ip_add_of_focus
         os.system(cmd)
     pass
