@@ -34,12 +34,16 @@ def action_on_files(list_of_files):
 
 def action_on_list(curr_list):
     curr_list=curr_list.rstrip()
+    border = "\n****************************************************************************************"
     with open(curr_list,'r') as list_of_focus:
         ip_add = list_of_focus.readline()
         while ip_add != "":
-            print ("\n*****************************************")
-            print ("current list: " + curr_list + " , ip: "+ip_add.rstrip())
-            print ("*****************************************")
+            print (border)
+            border_content = "** current list: " + curr_list + " , ip: "+ip_add.rstrip()
+            border_content += " "*(len(border)-len(border_content)-3)
+            border_content += "**"
+            print (border_content)
+            print ("****************************************************************************************")
             run_nmap_tcp(ip_add,curr_list)
             ip_add = list_of_focus.readline()
     pass
