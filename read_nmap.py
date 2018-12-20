@@ -28,7 +28,7 @@ def reader(filename):
                     ports_http.append(int(line.split('/')[0]))
             line = nmap_out.readline()
         pass
-    print ("reading nmap ports... done.")
+    print ("[*]reading nmap ports... done.")
     return (ports_ssl,ports_smb,ports_http)
 
 def clear_all_lists():
