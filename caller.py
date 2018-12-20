@@ -16,6 +16,11 @@ try:
 except:
     wait = 0
 wait = wait*60
+print("\nScan all ports? if 'yes', we go, if no, skip")
+try:
+    nmap_allports = str(raw_input("decision: "))
+except:
+    nmap_allports = False
 
 lists = lists.split(',')
 
@@ -87,7 +92,10 @@ def run_nmap_tcp(ip_add_of_focus,curr_list):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     name_of_output = curr_list+"_nmap_tcp_"+ip_add_of_focus
     name_of_output = name_of_output.rstrip()
-    cmd = "nmap -v -sS -sC -sV "+ip_add_of_focus
+    cmd = "nmap -v -sS -sC -sV "
+    if nmap_allports:
+        cmd += "-p- "
+    cmd += ip_add_of_focus
     print ("[*]running nmap ...")
     run_command(cmd,name_of_output)
     list_of_ssl_ports = rn.reader(name_of_output)[0]
