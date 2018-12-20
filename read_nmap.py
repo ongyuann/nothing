@@ -20,8 +20,8 @@ def reader(filename):
                 this_line = re.sub(' +',' ',line)
                 this_line = this_line.split(' ')
                 port_service = this_line[2]
-                if re.findall("tcpwrapped",this_line):
-                    if re.findall("443|3389",this_line):
+                if "tcpwrapped" in this_line:
+                    if "443" in this_line or "3389" in this_line:
                         ports_ssl.append(int(line.split('/')[0]))
                 if re.findall("ssl|443|3389",port_service):
                     ports_ssl.append(int(line.split('/')[0]))
