@@ -92,7 +92,7 @@ def run_nmap_tcp(ip_add_of_focus,curr_list):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     name_of_output = curr_list+"_nmap_tcp_"+ip_add_of_focus
     name_of_output = name_of_output.rstrip()
-    cmd = "nmap -v -sS -sC -sV "
+    cmd = "nmap -v -sS -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
     if nmap_allports:
         cmd += "-p- "
     cmd += ip_add_of_focus
