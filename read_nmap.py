@@ -20,7 +20,7 @@ def reader(filename):
                 this_line = re.sub(' +',' ',line)
                 this_line = this_line.split(' ')
                 port_service = this_line[2]
-                if re.findall("ssl",port_service):
+                if re.findall("ssl|443|3389",port_service):
                     ports_ssl.append(int(line.split('/')[0]))
                 if re.findall("smb",port_service):
                     ports_smb.append(int(line.split('/')[0]))
