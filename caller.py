@@ -89,7 +89,7 @@ def run_command(command,name_of_output):
         os.system('touch '+name_of_output)
     while 1:
         shell_output = process.stdout.readline().rstrip()
-        if re.findall('nmap|testssl',command) and shell_output == "" and process.poll() is not None:
+        if shell_output == "" and process.poll() is not None:
             break
         if shell_output != "":
             print (shell_output)
