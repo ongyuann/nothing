@@ -1,10 +1,6 @@
 import re
 
-filename = "nmap0-test_127.0.0.1"
-
-#ports_ssl = []
-#ports_smb = []
-#ports_http = []
+filename = "test"
 
 def reader(filename):
     ports_ssl = []
@@ -30,22 +26,3 @@ def reader(filename):
         pass
     print ("[*]reading nmap ports... done.")
     return (ports_ssl,ports_smb,ports_http)
-
-def clear_all_lists():
-    ports_ssl = []
-    ports_smb = []
-    ports_http = []
-    pass
-
-def output_all():
-    return (ports_ssl,ports_smb,ports_http)
-
-def output_ssl():
-    return (ports_ssl)
-
-def output_smb():
-    return (ports_smb)
-
-def output_http():
-    return (ports_http)
-#output()
