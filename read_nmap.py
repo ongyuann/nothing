@@ -9,7 +9,7 @@ def reader(filename):
     with open(filename,'r') as nmap_out:
         line = nmap_out.readline()
         while line != "":
-            pattern = r'\d{1,4}'+"/tcp"
+            pattern = r'\d{1,5}'+"/tcp"
             match = re.match(pattern,line)
             port_service = ""
             if match:
