@@ -10,7 +10,7 @@ print("** Please first ensure text files that contain IP addresses are in the sa
 print("****************************************************************************************")
 print("\nEnter the text files that contains the IP addresses (if more than 1 list, please separate by comma, e.g. list1,list2)")
 lists = str(raw_input("list: "))
-print("\nPlease enter time delay till scan starts (in minutes)")
+print("\nPlease enter time delay till scan starts (in minutes) - if no, skip")
 try:
     wait = int(raw_input("time in mins: "))
 except:
@@ -22,7 +22,7 @@ try:
 except:
     nmap_allports = False
 
-lists = lists.split(',')
+lists = lists.replace(" ","").split(',')
 
 '''
 file organization / main calling
@@ -32,28 +32,48 @@ def check_files(each_list_of_files):
         file = open(each_list_of_files,'r')
         return True
     except:
-        print (each_list_of_files + " not found. quitting.")
+        print ("[*]"+each_list_of_files + " not found. quitting.")
 
 def action_on_files(list_of_files):
+    check_output_cmd = ['wc','-l']
+    no_of_lines_in_all_files = 0
+    try:
+        for each_list in list_of_files:
+            check_output_cmd.append(each_list.rstrip())
+        no_of_lines_in_all_files = str(subprocess.check_output(check_output_cmd)).split(' ')[-2]
+    except:
+        print ("[*]you sure the files exist / are entered correctly? quitting.")
+    
     for each_list in list_of_files:
         if not check_files(each_list):
             break
-        action_on_list(each_list)
+        action_on_list(each_list,no_of_lines_in_all_files)
 
-def action_on_list(curr_list):
+def action_on_list(curr_list,no_of_lines_in_all_files):
     curr_list=curr_list.rstrip()
+    folder_name=curr_list+'_results'
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+    else:
+        os.system('mv '+folder_name+' '+folder_name+'.old')
+        os.makedirs(folder_name)
     border = "\n****************************************************************************************"
     with open(curr_list,'r') as list_of_focus:
-        ip_add = list_of_focus.readline()
+        no_of_lines_in_file = str(subprocess.check_output(['wc','-l',curr_list])).split(' ')[0]
+        count = 1
+        ip_add = list_of_focus.readline().rstrip()
         while ip_add != "":
             print (border)
             border_content = "** current list: " + curr_list + " , ip: "+ip_add.rstrip()
-            border_content += " "*(len(border)-len(border_content)-3)
-            border_content += "**"
+            count_tracker = str(count) + "/" + str(no_of_lines_in_file) + "/" + str(no_of_lines_in_all_files)
+            border_content += " "*(len(border)-len(border_content)-3-len(count_tracker)-1)
+            border_content += count_tracker
+            border_content += " **"
             print (border_content)
             print ("****************************************************************************************")
-            run_nmap_tcp(ip_add,curr_list)
-            ip_add = list_of_focus.readline()
+            run_nmap_tcp(ip_add,curr_list,folder_name)
+            count += 1
+            ip_add = list_of_focus.readline().rstrip()
     pass
 
 '''
@@ -81,16 +101,14 @@ def run_command(command,name_of_output):
         rc = process.communicate()
     except:
         rc = process.poll()
-    #rc = process.poll()
     return rc
 
 '''
 script 'runners' below
 '''
-def run_nmap_tcp(ip_add_of_focus,curr_list):
-    #print(ip_add_of_focus)
+def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
-    name_of_output = curr_list+"_nmap_tcp_"+ip_add_of_focus
+    name_of_output = folder_name+"/"+curr_list+"_nmap_tcp_"+ip_add_of_focus
     name_of_output = name_of_output.rstrip()
     cmd = "nmap -v -sS -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
     if nmap_allports:
@@ -99,21 +117,17 @@ def run_nmap_tcp(ip_add_of_focus,curr_list):
     print ("[*]running nmap ...")
     run_command(cmd,name_of_output)
     list_of_ssl_ports = rn.reader(name_of_output)[0]
-    #list_of_ssl_ports = rn.output_ssl()
-    #print ("[*]BREAK")
-    #print (list_of_ssl_ports)
-    #sys.exit()
-    run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list)
-    run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list)
+    run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
+    run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
     pass
 
-def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list):
+def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     for ssl_port in list_of_ssl_ports:
         print ("[*]running sslscan on " + ip_add_of_focus + " on port " + str(ssl_port))
         cmd = "sslscan "+ip_add_of_focus+":"
         cmd += str(ssl_port)
-        name_of_output = curr_list+"_sslscan_"+ip_add_of_focus+":"+str(ssl_port)
+        name_of_output = folder_name+"/"+curr_list+"_sslscan_"+ip_add_of_focus+":"+str(ssl_port)
         #run_command(cmd,name_of_output)
         try:
             output_file = open(name_of_output,'r')
@@ -124,13 +138,13 @@ def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list):
         os.system(cmd+" >> "+name_of_output)
     pass
 
-def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list):
+def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     for ssl_port in list_of_ssl_ports:
         print ("[*]running testssl on " + ip_add_of_focus + " on port " + str(ssl_port))
         cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh " +ip_add_of_focus+":"
         cmd += str(ssl_port)
-        name_of_output = curr_list+"_testssl_"+ip_add_of_focus+":"+str(ssl_port)
+        name_of_output = folder_name+"/"+curr_list+"_testssl_"+ip_add_of_focus+":"+str(ssl_port)
         run_command(cmd,name_of_output)
     pass
 
@@ -139,6 +153,3 @@ final actions
 '''
 time.sleep(wait)
 action_on_files(lists)
-
-#rn.reader("nmap0-test_127.0.0.1")
-#rn.output()
