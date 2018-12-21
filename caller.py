@@ -1,5 +1,8 @@
 #!/bin/python
-
+'''
+important: replacing file names with ":" with "-" so they can be read in windows:
+for file in $(ls | grep ":");do mv -- "$file" "${file//:/-}";done
+'''
 import os,sys,time,subprocess,shlex,re
 import read_nmap as rn
 '''
