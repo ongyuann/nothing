@@ -16,6 +16,6 @@ Recommended way to use:
 6. The script should now ask you to enter the filenames of the lists. Just enter, can separate by comma/space, e.g. *list1, list2*
 7. If you want to delay the scan, enter no. of minutes you want to script to wait. If scan now, just skip
 8. **If you want to scan all ports, enter “yes”.** If just a quick scan (top 1000 ports), just skip
-9. Then hit another enter, and wait for the results – results will in folders named in this way: _list1_results_ , _list2_results_ , etc …
+9. Then hit another enter, and wait for the results – results will be stored in folders named in this way: _list1_results_ , _list2_results_ , etc …
 
 **Have fun**
