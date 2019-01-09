@@ -22,4 +22,4 @@ Recommended way to use:
 
 **Have fun**
 
-no biatches were mentioned in this readme. only @5sh073s.
+no biatches were harmed in the making of this readme. only @5sh073s.
