@@ -19,11 +19,17 @@ try:
 except:
     wait = 0
 wait = wait*60
-print("\nScan all ports? if 'yes', we go, if no, skip")
+print("\nScan 1000 ports only? if 'yes', we go, if no, skip")
 try:
-    nmap_allports = str(raw_input("decision: "))
+    nmap_1000ports = str(raw_input("decision: "))
 except:
-    nmap_allports = False
+    nmap_1000ports = False
+print("\nUDP or TCP? if 'UDP', type 'yes', if 'TCP', skip")
+try:
+    nmap_udp = str(raw_input("UDP?: "))
+except:
+    nmap_udp = False
+print("\nOK no more questions\n") 
 
 lists = lists.replace(" ","").split(',')
 
@@ -113,8 +119,12 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     name_of_output = folder_name+"/"+curr_list+"_nmap_tcp_"+ip_add_of_focus
     name_of_output = name_of_output.rstrip()
-    cmd = "nmap -v -sS -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
-    if nmap_allports:
+    cmd = "nmap -v -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
+    if nmap_udp:
+        cmd += "-sU "
+    else:
+        cmd += "-sS "
+    if not nmap_1000ports:
         cmd += "-p- "
     cmd += ip_add_of_focus
     print ("[*]running nmap ...")
