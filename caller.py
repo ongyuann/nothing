@@ -24,7 +24,7 @@ try:
     nmap_1000ports = str(raw_input("decision: "))
 except:
     nmap_1000ports = False
-print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**]\nif UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
+print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**]\n[*]if UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
 try:
     nmap_option = str(raw_input("option: "))
     if re.findall("1|udp",nmap_option):
@@ -67,34 +67,39 @@ def action_on_files(list_of_files):
 def action_on_list(curr_list,no_of_lines_in_all_files):
     curr_list=curr_list.rstrip()
     folder_name=curr_list+'_results'
-    if nmap_udp:
-        folder_name += '_udp'
-    else:
-        folder_name += '_tcp'
-    if not os.path.exists(folder_name):
-        os.makedirs(folder_name)
-    else:
-        if os.path.exists(folder_name+".old"):
-            os.system('rm -r '+folder_name+'.old')
-        os.system('mv '+folder_name+' '+folder_name+'.old')
-        os.makedirs(folder_name)
-    border = "\n****************************************************************************************"
-    with open(curr_list,'r') as list_of_focus:
-        no_of_lines_in_file = str(subprocess.check_output(['wc','-l',curr_list])).split(' ')[0]
-        count = 1
-        ip_add = list_of_focus.readline().rstrip()
-        while ip_add != "":
-            print (border)
-            border_content = "** current list: " + curr_list + " , ip: "+ip_add.rstrip()
-            count_tracker = str(count) + "/" + str(no_of_lines_in_file) + "/" + str(no_of_lines_in_all_files)
-            border_content += " "*(len(border)-len(border_content)-3-len(count_tracker)-1)
-            border_content += count_tracker
-            border_content += " **"
-            print (border_content)
-            print ("****************************************************************************************")
-            run_nmap_tcp(ip_add,curr_list,folder_name)
-            count += 1
+    options = ["_tcp","_udp"]
+    if nmap_options == 'both':
+        pass
+    if nmap_options == 'udp':
+        options = options[1]
+    if nmap_options == 'tcp':
+        options = options[0]
+    for option in options:
+        folder_name += option
+        if not os.path.exists(folder_name):
+            os.makedirs(folder_name)
+        else:
+            if os.path.exists(folder_name+".old"):
+                os.system('rm -r'+folder_name+'.old')
+            os.system('mv '+folder_name+' '+folder_name+'.old')
+            os.makedirs(folder_name)
+        border = "\n****************************************************************************************"
+        with open(curr_list,'r') as list_of_focus:
+            no_of_lines_in_file = str(subprocess.check_output(['wc','-l',curr_list])).split(' ')[0]
+            count = 1
             ip_add = list_of_focus.readline().rstrip()
+            while ip_add != "":
+                print (border)
+                border_content = "** current list: " + curr_list + " , ip: "+ip_add.rstrip()
+                count_tracker = str(count) + "/" + str(no_of_lines_in_file) + "/" + str(no_of_lines_in_all_files)
+                border_content += " "*(len(border)-len(border_content)-3-len(count_tracker)-1)
+                border_content += count_tracker
+                border_content += " **"
+                print (border_content)
+                print ("****************************************************************************************")
+                run_nmap_tcp(ip_add,curr_list,folder_name)
+                count += 1
+                ip_add = list_of_focus.readline().rstrip()
     pass
 
 '''
