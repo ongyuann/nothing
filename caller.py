@@ -80,7 +80,7 @@ def action_on_list(curr_list,no_of_lines_in_all_files):
             os.makedirs(folder_name)
         else:
             if os.path.exists(folder_name+".old"):
-                os.system('rm -r'+folder_name+'.old')
+                os.system('rm -r '+folder_name+'.old')
             os.system('mv '+folder_name+' '+folder_name+'.old')
             os.makedirs(folder_name)
         border = "\n****************************************************************************************"
