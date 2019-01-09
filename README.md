@@ -7,7 +7,7 @@ Recommended way to use:
 1. Mkdir a folder for your scans – recommended to mkdir by date for organization, e.g. *mkdir 8_Jan_2019*
 2. Prepare a list/many lists of IP addresses you want to scan.
   * a. You can prepare multiple lists: the script allows you to specify multiple lists, will scan each IP address in sequence one by one
-  * b.	You can also open a new tab and run another instance of the script: this allows you to run 2 or more scans simultaneously
+  * b.	You can also open a new tab and run another instance of the script: this allows you to run multiple scans simultaneously
   * c.	Example of how to create list: *vi targets_list_1* , then just copy and paste the IP addresses in, separated by newline
   * d.	Can also prepare lists from windows, just make sure the IP addresses are separated by newline
 3. Type: _git clone https://github.com/oya10/nothing_ (if this doesn't work, browse to the same URL, download the damn thing, and put it in the same directory)
