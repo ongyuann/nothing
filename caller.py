@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!usr/bin/python3
 '''
 important: replacing file names with ":" with "-" so they can be read in windows:
 for file in $(ls | grep ":");do mv -- "$file" "${file//:/-}";done
@@ -12,21 +12,21 @@ print("*************************************************************************
 print("** Please first ensure text files that contain IP addresses are in the same directory **")
 print("****************************************************************************************")
 print("\nEnter the text files that contains the IP addresses (if more than 1 list, please separate by comma, e.g. list1,list2)")
-lists = str(raw_input("list: "))
+lists = str(input("list: "))
 print("\nPlease enter time delay till scan starts (in minutes) - if no, skip")
 try:
-    wait = int(raw_input("time in mins: "))
+    wait = int(input("time in mins: "))
 except:
     wait = 0
 wait = wait*60
 print("\nScan 1000 ports only? if 'yes', we go, if All Ports, skip")
 try:
-    nmap_1000ports = str(raw_input("decision: "))
+    nmap_1000ports = str(input("decision: "))
 except:
     nmap_1000ports = False
 print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**]\n[*]if UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
 try:
-    nmap_option = str(raw_input("option: "))
+    nmap_option = str(input("option: "))
     if re.findall("1|udp",nmap_option):
         nmap_option = "udp"
     elif re.findall("2|tcp",nmap_option):
@@ -106,7 +106,7 @@ def action_on_list(curr_list,no_of_lines_in_all_files):
 special runner + writer function
 '''
 def run_command(command,name_of_output):
-    process = subprocess.Popen(shlex.split(command), stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    process = subprocess.Popen(shlex.split(command), stdin=subprocess.PIPE, stdout=subprocess.PIPE, encoding='UTF-8')
     try:
         output_file = open(name_of_output,'r')
         os.system('mv '+name_of_output+' '+name_of_output+'.old')
