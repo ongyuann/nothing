@@ -138,10 +138,10 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     if nmap_option == "both":
         #first comes tcp
         cmd_tcp = cmd + "-sS " + ip_add_of_focus
-        name_of_output_tcp = name_of_output += "_tcp_" + ip_add_of_focus
+        name_of_output_tcp = name_of_output + "_tcp_" + ip_add_of_focus
         #then comes udp
         cmd_udp = cmd + "-sU "
-        name_of_output_udp = name_of_output += "_udp_" + ip_add_of_focus
+        name_of_output_udp = name_of_output + "_udp_" + ip_add_of_focus
         #off we go ...
         print ("[*]running nmap tcp ...")
         run_command(cmd,name_of_output_tcp)
