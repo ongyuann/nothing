@@ -55,7 +55,7 @@ def action_on_files(list_of_files):
     try:
         for each_list in list_of_files:
             check_output_cmd.append(each_list.rstrip())
-        no_of_lines_in_all_files = str(subprocess.check_output(check_output_cmd)).split(' ')[-2]
+        no_of_lines_in_all_files = str(subprocess.check_output(check_output_cmd,encoding='UTF-8')).split(' ')[-2]
     except:
         print ("[*]you sure the files exist / are entered correctly? quitting.")
     
