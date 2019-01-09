@@ -1,7 +1,7 @@
 # nothing now runs on Python 3 thanks to ma man the useless worker
 Instructions:\
 First make sure you’re using our Kali with the testssl stored at ~/Desktop/tools/scripts/testssl.sh/testssl.sh\
-(Otherwise the script cannot find testssl) (but if think you can adapt the script to work testssl anyhow anyway, you're welcome to do so yourself, bitch)\
+(Otherwise the script cannot find testssl) (but if think you can adapt the script to work testssl anyhow anyway, you're welcome to do so yourself, bich)\
 \
 Recommended way to use:
 1. Mkdir a folder for your scans – recommended to mkdir by date for organization, e.g. *mkdir 8_Jan_2019*
@@ -11,7 +11,7 @@ Recommended way to use:
   * c.	Example of how to create list: *vi targets_list_1* , then just copy and paste the IP addresses in, separated by newline
   * d.	Can also prepare lists from windows, just make sure the IP addresses are separated by newline
 3. Type: _git clone https://github.com/oya10/nothing_ (if this doesn't work, browse to the same URL, download the damn thing, and put it in the same directory)
-4. Copy out the contents: _cp nothing/* ._ (including the full-stop!) (if you downloaded nothing manually, the thing would be called _nothing-master_ , so adapt, bitch).
+4. Copy out the contents: _cp nothing/* ._ (including the full-stop!) (if you downloaded nothing manually, the thing would be called _nothing-master_ , so adapt, biatch).
 5. Run the main script, caller.py: _python3 caller.py_
 6. The script should now ask you to enter the filenames of the lists. Just enter, can separate by comma/space, e.g. *list1, list2*
 7. If you want to delay the scan, enter no. of minutes you want to script to wait. If scan now, just skip
@@ -20,3 +20,5 @@ Recommended way to use:
 10. Then hit another enter, and wait for the results – results will be stored in folders named in this way: _list1_results_udp_ , _list2_results_tcp_ , etc …
 
 **Have fun**
+
+no bitches were mentioned in this readme. oops.
