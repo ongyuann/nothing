@@ -1,4 +1,4 @@
-# nothing
+# nothing is now run by Python 3 thanks to the boss man
 Instructions:\
 First make sure you’re using our Kali with the testssl stored at ~/Desktop/tools/scripts/testssl.sh/testssl.sh\
 (Otherwise the script cannot find testssl)\
