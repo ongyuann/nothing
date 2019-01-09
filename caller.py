@@ -145,16 +145,16 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
         cmd_tcp = cmd + "-sS " + ip_add_of_focus
         name_of_output_tcp = name_of_output + "_tcp_" + ip_add_of_focus
         #then comes udp
-        cmd_udp = cmd + "-sU "
+        cmd_udp = cmd + "-sU " + ip_add_of_focus
         name_of_output_udp = name_of_output + "_udp_" + ip_add_of_focus
         #off we go ...
         print ("[*]running nmap tcp ...")
-        run_command(cmd,name_of_output_tcp)
+        run_command(cmd_tcp,name_of_output_tcp)
         list_of_ssl_ports = rn.reader(name_of_output_tcp)[0]
         run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
         run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
         print ("[*]running nmap udp ...")
-        run_command(cmd,name_of_output_udp)
+        run_command(cmd_udp,name_of_output_udp)
         pass
     else:
         if nmap_option == "udp":
