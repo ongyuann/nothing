@@ -65,6 +65,10 @@ def action_on_files(list_of_files):
 def action_on_list(curr_list,no_of_lines_in_all_files):
     curr_list=curr_list.rstrip()
     folder_name=curr_list+'_results'
+    if nmap_udp:
+        folder_name += '_udp'
+    else:
+        folder_name += '_tcp'
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     else:
