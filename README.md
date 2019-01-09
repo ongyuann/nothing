@@ -1,7 +1,7 @@
 # nothing now runs on Python 3 thanks to ma man the useless worker
 Instructions:\
 First make sure you’re using our Kali with the testssl stored at ~/Desktop/tools/scripts/testssl.sh/testssl.sh\
-(Otherwise the script cannot find testssl) (but if think you can adapt to script to work testssl anyhow anyway, you're welcome to do so yourself, bitch)\
+(Otherwise the script cannot find testssl) (but if think you can adapt the script to work testssl anyhow anyway, you're welcome to do so yourself, bitch)\
 \
 Recommended way to use:
 1. Mkdir a folder for your scans – recommended to mkdir by date for organization, e.g. *mkdir 8_Jan_2019*
