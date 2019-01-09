@@ -86,7 +86,7 @@ def action_on_list(curr_list,no_of_lines_in_all_files):
             os.makedirs(folder_name)
         border = "\n****************************************************************************************"
         with open(curr_list,'r') as list_of_focus:
-            no_of_lines_in_file = str(subprocess.check_output(['wc','-l',curr_list])).split(' ')[0]
+            no_of_lines_in_file = str(subprocess.check_output(['wc','-l',curr_list],encoding='UTF-8')).split(' ')[0]
             count = 1
             ip_add = list_of_focus.readline().rstrip()
             while ip_add != "":
