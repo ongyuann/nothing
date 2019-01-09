@@ -1,4 +1,4 @@
-#!/bin/python
+#!usr/bin/python
 '''
 important: replacing file names with ":" with "-" so they can be read in windows:
 for file in $(ls | grep ":");do mv -- "$file" "${file//:/-}";done
@@ -24,15 +24,17 @@ try:
     nmap_1000ports = str(raw_input("decision: "))
 except:
     nmap_1000ports = False
-print("\nUDP or TCP? if UDP, type 'yes', if TCP, skip")
+print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**] if UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
 try:
-    nmap_udp = str(raw_input("protocol: "))
-    if "udp" in nmap_udp or "yes" in nmap_udp:
-        nmap_udp = True
+    nmap_option = str(raw_input("option: "))
+    if re.findall("1|udp",nmap_option):
+        nmap_option = "udp"
+    elif re.findall("2|tcp",nmap_option):
+        nmap_option = "tcp"
     else:
-        nmap_udp = False
+        nmap_option = "both"
 except:
-    nmap_udp = False
+    nmap_option = "both"
 print("\nOK no more questions\n") 
 
 lists = lists.replace(" ","").split(',')
@@ -130,21 +132,42 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     name_of_output = folder_name+"/"+curr_list+"_nmap"
     name_of_output = name_of_output.rstrip()
     cmd = "nmap -v -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
-    if nmap_udp:
-        cmd += "-sU "
-        name_of_output += "_udp_"
-    else:
-        cmd += "-sS "
-        name_of_output += "_tcp_"
     if not nmap_1000ports:
         cmd += "-p- "
-    name_of_output += ip_add_of_focus
-    cmd += ip_add_of_focus
-    print ("[*]running nmap ...")
-    run_command(cmd,name_of_output)
-    list_of_ssl_ports = rn.reader(name_of_output)[0]
-    run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
-    run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
+        
+    if nmap_option == "both":
+        #first comes tcp
+        cmd_tcp = cmd + "-sS " + ip_add_of_focus
+        name_of_output_tcp = name_of_output += "_tcp_" + ip_add_of_focus
+        #then comes udp
+        cmd_udp = cmd + "-sU "
+        name_of_output_udp = name_of_output += "_udp_" + ip_add_of_focus
+        #off we go ...
+        print ("[*]running nmap tcp ...")
+        run_command(cmd,name_of_output_tcp)
+        list_of_ssl_ports = rn.reader(name_of_output_tcp)[0]
+        run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
+        run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
+        print ("[*]running nmap udp ...")
+        run_command(cmd,name_of_output_udp)
+        pass
+    else:
+        if nmap_option == "udp":
+            cmd += "-sU "
+            name_of_output += "_udp_"
+        elif nmap_option == "tcp":
+            cmd += "-sS "
+            name_of_output += "_tcp_"
+        name_of_output += ip_add_of_focus
+        cmd += ip_add_of_focus
+        print ("[*]running nmap "+nmap_option+" ...")
+        run_command(cmd,name_of_output)
+        list_of_ssl_ports = rn.reader(name_of_output)[0]
+        if nmap_option == "udp":
+               pass
+        else:
+            run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
+            run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name)
     pass
 
 def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
