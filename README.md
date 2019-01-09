@@ -11,7 +11,7 @@ Recommended way to use:
   * c.	Example of how to create list: *vi targets_list_1* , then just copy and paste the IP addresses in, separated by newline
   * d.	Can also prepare lists from windows, just make sure the IP addresses are separated by newline
 3. Type: _git clone https://github.com/oya10/nothing_ (if this doesn't work, browse to the same URL, download the damn thing, and put it in the same directory)
-4. Copy out the contents: _cp nothing/* ._ (including the full-stop!) (also, if you downloaded nothing manually, the thing would be called _nothing-master_ , so adapt, beeeeatch).
+4. Copy out the contents: _cp nothing/* ._ (including the full-stop!) (if you downloaded nothing manually, the thing would be called _nothing-master_ , so adapt, n00b).
 5. Run the main script, caller.py: _python3 caller.py_
 6. The script should now ask you to enter the filenames of the lists. Just enter, can separate by comma/space, e.g. *list1, list2*
 7. If you want to delay the scan, enter no. of minutes you want to script to wait. If scan now, just skip
