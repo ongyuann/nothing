@@ -19,14 +19,18 @@ try:
 except:
     wait = 0
 wait = wait*60
-print("\nScan 1000 ports only? if 'yes', we go, if no, skip")
+print("\nScan 1000 ports only? if 'yes', we go, if All Ports, skip")
 try:
     nmap_1000ports = str(raw_input("decision: "))
 except:
     nmap_1000ports = False
-print("\nUDP or TCP? if 'UDP', type 'yes', if 'TCP', skip")
+print("\nUDP or TCP? if UDP, type 'yes', if TCP, skip")
 try:
-    nmap_udp = str(raw_input("UDP?: "))
+    nmap_udp = str(raw_input("protocol: "))
+    if "udp" in nmap_udp or "yes" in nmap_udp:
+        nmap_udp = True
+    else:
+        nmap_udp = False
 except:
     nmap_udp = False
 print("\nOK no more questions\n") 
@@ -117,15 +121,18 @@ script 'runners' below
 '''
 def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
-    name_of_output = folder_name+"/"+curr_list+"_nmap_tcp_"+ip_add_of_focus
+    name_of_output = folder_name+"/"+curr_list+"_nmap"
     name_of_output = name_of_output.rstrip()
     cmd = "nmap -v -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
     if nmap_udp:
         cmd += "-sU "
+        name_of_output += "_udp_"
     else:
         cmd += "-sS "
+        name_of_output += "_tcp_"
     if not nmap_1000ports:
         cmd += "-p- "
+    name_of_output += ip_add_of_focus
     cmd += ip_add_of_focus
     print ("[*]running nmap ...")
     run_command(cmd,name_of_output)
