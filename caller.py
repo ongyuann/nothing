@@ -68,11 +68,11 @@ def action_on_list(curr_list,no_of_lines_in_all_files):
     curr_list=curr_list.rstrip()
     folder_name=curr_list+'_results'
     options = ["_tcp","_udp"]
-    if nmap_options == 'both':
+    if nmap_option == 'both':
         pass
-    if nmap_options == 'udp':
+    if nmap_option == 'udp':
         options = options[1]
-    if nmap_options == 'tcp':
+    if nmap_option == 'tcp':
         options = options[0]
     for option in options:
         folder_name += option
