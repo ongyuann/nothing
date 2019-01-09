@@ -12,21 +12,22 @@ print("*************************************************************************
 print("** Please first ensure text files that contain IP addresses are in the same directory **")
 print("****************************************************************************************")
 print("\nEnter the text files that contains the IP addresses (if more than 1 list, please separate by comma, e.g. list1,list2)")
-lists = str(input("list: "))
+lists = input("list: ")
 print("\nPlease enter time delay till scan starts (in minutes) - if no, skip")
 try:
-    wait = int(input("time in mins: "))
+    wait = input("time in mins: ")
+    wait = int(wait)
 except:
     wait = 0
 wait = wait*60
 print("\nScan 1000 ports only? if 'yes', we go, if All Ports, skip")
 try:
-    nmap_1000ports = str(input("decision: "))
+    nmap_1000ports = input("decision: ")
 except:
     nmap_1000ports = False
 print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**]\n[*]if UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
 try:
-    nmap_option = str(input("option: "))
+    nmap_option = input("option: ")
     if re.findall("1|udp",nmap_option):
         nmap_option = "udp"
     elif re.findall("2|tcp",nmap_option):
