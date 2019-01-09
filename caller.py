@@ -20,7 +20,7 @@ try:
 except:
     wait = 0
 wait = wait*60
-print("\nScan 1000 ports only? if 'yes', we go, if All Ports, skip")
+print("\nScan 1000 ports only? if 'yes', we go, if All Ports, skip, if junk, All Ports for you")
 try:
     nmap_1000ports = input("decision: ")
 except:
@@ -140,15 +140,11 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     cmd = "nmap -v -sC -sV -T4 --max-rtt 300ms --max-retries 3 "
     if not nmap_1000ports:
         cmd += "-p- "
-        
     if nmap_option == "both":
-        #first comes tcp
         cmd_tcp = cmd + "-sS " + ip_add_of_focus
         name_of_output_tcp = name_of_output + "_tcp_" + ip_add_of_focus
-        #then comes udp
         cmd_udp = cmd + "-sU " + ip_add_of_focus
         name_of_output_udp = name_of_output + "_udp_" + ip_add_of_focus
-        #off we go ...
         print ("[*]running nmap tcp ...")
         run_command(cmd_tcp,name_of_output_tcp)
         list_of_ssl_ports = rn.reader(name_of_output_tcp)[0]
