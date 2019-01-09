@@ -24,7 +24,7 @@ try:
     nmap_1000ports = str(raw_input("decision: "))
 except:
     nmap_1000ports = False
-print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**] if UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
+print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**]\nif UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
 try:
     nmap_option = str(raw_input("option: "))
     if re.findall("1|udp",nmap_option):
