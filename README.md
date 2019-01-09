@@ -17,6 +17,6 @@ Recommended way to use:
 7. If you want to delay the scan, enter no. of minutes you want to script to wait. If scan now, just skip
 8. **If you want to scan just the top 1000 ports, enter “yes”.** If All Port scan (which you should do by default), just skip
 9. If you want a UDP scan, say 'yes' or 'udp', if TCP scan, just skip (can also enter 'tcp' if you kiasee)
-10. Then hit another enter, and wait for the results – results will be stored in folders named in this way: _list1_results_udp , _list2_results_tcp , etc …
+10. Then hit another enter, and wait for the results – results will be stored in folders named in this way: _list1_results_udp_ , _list2_results_tcp_ , etc …
 
 **Have fun**
