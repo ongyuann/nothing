@@ -72,9 +72,9 @@ def action_on_list(curr_list,no_of_lines_in_all_files):
     if nmap_option == 'both':
         pass
     if nmap_option == 'udp':
-        options = [options[1]]
+        options.pop(0)
     if nmap_option == 'tcp':
-        options = [options[0]]
+        options.pop(1)
     for option in options:
         folder_name += option
         if not os.path.exists(folder_name):
