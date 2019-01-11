@@ -1,4 +1,4 @@
-# nothing now runs on Python 3 thanks to ma man the self-declared useless worker
+# nothing now runs on Python 3 thanks to ma man the self-declared big boss man
 Instructions:\
 First make sure you’re using our Kali with the testssl stored at ~/Desktop/tools/scripts/testssl.sh/testssl.sh\
 (Otherwise the script cannot find testssl) (but if you think you can adapt the script to work testssl anyhow anyway, you're welcome to do so yourself, bij)\
