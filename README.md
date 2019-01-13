@@ -20,6 +20,8 @@ Recommended way to use:
 10. Then hit another enter, and wait for the results – results will be stored in folders named in this way: _list1_results_udp_ , _list2_results_tcp_ , etc …
 11. Zonks wubba lub dub, peace out.
 
+**Have fun** (also if you encounter any troubles, please do not contact me and solve your own problems. danke.)
+
 no biatches were harmed in the making of this readme. only @5sh073s.
 
 # changelog
