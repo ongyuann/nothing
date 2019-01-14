@@ -22,7 +22,7 @@ Recommended way to use:
 
 **Have fun**
 
-if you encounter any troubles, please, do not hesitate to solve them your own farting self. :). that's right, don't contact me bidjes.
+if you encounter any troubles, please, do not hesitate to solve them your own farting self. :).
 
 no biatches were harmed in the making of this readme. only @5sh073s.
 
