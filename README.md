@@ -22,7 +22,7 @@ Recommended way to use:
 
 **Have fun**
 
-any problems faced using the script are to be fixed by your own bloody self. :).
+this script takes no responsibilities for whatever happens when you use it, any problems encountered are to be fixed by your own bleddy self.
 
 no biatches were harmed in the making of this readme. only @5sh073s.
 
