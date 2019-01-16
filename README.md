@@ -9,7 +9,7 @@ Recommended way to use:
   * a. Can prepare multiple lists: the script allows you to specify multiple lists, will scan each IP address in sequence one by one
   * b.	Keep calm and discover that you can also open a new tab and run another instance of the script: this allows you to run multiple scans simultaneously
   * c.	Just FYI: how to create list: *vi targets_list_1* , then just copy and paste the IP addresses in, separated by newline
-  * d.	Eu can also prepare lists from windows, just make sure the IP addresses are separated by newline
+  * d.	You can also prepare lists from windows, just make sure the IP addresses are separated by newline
 3. Rekt yet? Type: _git clone https://github.com/oya10/nothing_ (if this doesn't work, browse to the same URL, download the damn thing, and put it in the same directory)
 4. Eh? Not working yet? Cos you gotta copy out the contents first you little byayayach: _cp nothing/* ._ (including the full-stop!) (if you downloaded nothing manually, the thing would be called _nothing-master_ , so adapt, beeeeeatch).
 5. Me hombre, now run the main script, caller.py: _python3 caller.py_
