@@ -36,6 +36,11 @@ try:
         nmap_option = "both"
 except:
     nmap_option = "both"
+print("\nWant colour or no colour? If yes, say 'yes', if no, skip")
+try:
+    want_colour = input("so want?: ")
+except:
+    want_colour = False
 print("\nOK no more questions\n") 
 
 lists = lists.replace(" ","").split(',')
@@ -176,6 +181,7 @@ def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     for ssl_port in list_of_ssl_ports:
         print ("[*]running sslscan on " + ip_add_of_focus + " on port " + str(ssl_port))
+        #ssl --no-color
         cmd = "sslscan "+ip_add_of_focus+":"
         cmd += str(ssl_port)
         name_of_output = folder_name+"/"+curr_list+"_sslscan_"+ip_add_of_focus+"-"+str(ssl_port)
@@ -192,6 +198,7 @@ def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
 def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     for ssl_port in list_of_ssl_ports:
+        # --color 0
         print ("[*]running testssl on " + ip_add_of_focus + " on port " + str(ssl_port))
         cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh " +ip_add_of_focus+":"
         cmd += str(ssl_port)
