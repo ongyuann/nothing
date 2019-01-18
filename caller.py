@@ -36,7 +36,7 @@ try:
         nmap_option = "both"
 except:
     nmap_option = "both"
-print("\nWant colour or no colour? If yes, say 'yes', if no, skip")
+print("\nThe sslscan / testssl scans want colour or no colour? If yes, say 'yes', if no, skip")
 try:
     want_colour = input("so want?: ")
 except:
