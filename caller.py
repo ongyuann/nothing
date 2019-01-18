@@ -181,11 +181,11 @@ def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
     ip_add_of_focus = ip_add_of_focus.rstrip()
     for ssl_port in list_of_ssl_ports:
         print ("[*]running sslscan on " + ip_add_of_focus + " on port " + str(ssl_port))
-        #ssl --no-color
+        #ssl --no-colour
         if want_colour:
-            cmd = "sslscan --no-color "+ip_add_of_focus+":"
-        else:
             cmd = "sslscan "+ip_add_of_focus+":"
+        else:
+            cmd = "sslscan --no-colour "+ip_add_of_focus+":"
         cmd += str(ssl_port)
         name_of_output = folder_name+"/"+curr_list+"_sslscan_"+ip_add_of_focus+"-"+str(ssl_port)
         #run_command(cmd,name_of_output)
@@ -204,9 +204,9 @@ def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
         # --color 0
         print ("[*]running testssl on " + ip_add_of_focus + " on port " + str(ssl_port))
         if want_colour:
-            cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh --color 0 " +ip_add_of_focus+":"
-        else:
             cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh " +ip_add_of_focus+":"
+        else:
+            cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh --color 0 " +ip_add_of_focus+":"
         cmd += str(ssl_port)
         name_of_output = folder_name+"/"+curr_list+"_testssl_"+ip_add_of_focus+"-"+str(ssl_port)
         run_command(cmd,name_of_output)
