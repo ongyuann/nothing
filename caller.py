@@ -213,7 +213,7 @@ def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
         else:
             cmd = "/root/Desktop/tools/scripts/testssl.sh/testssl.sh --color 0 " +ip_add_of_focus+":"
         cmd += str(ssl_port)
-        name_of_output = folder_name+"/"+curr_list+"_testssl_"+ip_add_of_focus+"-"+str(ssl_port)
+        name_of_output = folder_name+"/"+curr_list+"_testssl_"+ip_add_of_focus+"-"+str(ssl_port)+".txt"
         run_command(cmd,name_of_output)
     pass
 
