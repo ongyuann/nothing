@@ -147,10 +147,10 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
         cmd += "-p- "
     if nmap_option == "both":
         cmd_tcp = cmd + "-sS " + ip_add_of_focus
-        name_of_output_tcp = name_of_output + "_tcp_" + ip_add_of_focus
+        name_of_output_tcp = name_of_output + "_tcp_" + ip_add_of_focus + ".txt"
         cmd_tcp += "-oN " + name_of_output_tcp + "_backup.txt"
         cmd_udp = cmd + "-sU " + ip_add_of_focus
-        name_of_output_udp = name_of_output + "_udp_" + ip_add_of_focus
+        name_of_output_udp = name_of_output + "_udp_" + ip_add_of_focus + ".txt"
         cmd_udp += "-oN " + name_of_output_udp + "_backup.txt"
         print ("[*]running nmap tcp ...")
         run_command(cmd_tcp,name_of_output_tcp)
@@ -169,7 +169,7 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
             cmd += "-sS "
             name_of_output += "_tcp_"
             #cmd += "-oN " + name_of_output + "_backup.txt "
-        name_of_output += ip_add_of_focus
+        name_of_output += ip_add_of_focus + ".txt"
         cmd += ip_add_of_focus
         cmd += " -oN " + name_of_output + "_backup.txt"
         print ("[*]running nmap "+nmap_option+" ...")
@@ -192,7 +192,7 @@ def run_sslscan(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
         else:
             cmd = "sslscan --no-colour "+ip_add_of_focus+":"
         cmd += str(ssl_port)
-        name_of_output = folder_name+"/"+curr_list+"_sslscan_"+ip_add_of_focus+"-"+str(ssl_port)
+        name_of_output = folder_name+"/"+curr_list+"_sslscan_"+ip_add_of_focus+"-"+str(ssl_port)+".txt"
         #run_command(cmd,name_of_output)
         try:
             output_file = open(name_of_output,'r')
