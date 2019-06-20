@@ -28,3 +28,7 @@ no biatches were harmed in the making of this readme. only @5sh073s.
 
 # changelog
 ver 133.7 : please just use this latest version you mangy parrot.
+
+# upcoming features
+- rdp encryption check
+- http methods check
