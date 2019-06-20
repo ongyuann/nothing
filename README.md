@@ -32,3 +32,4 @@ ver 133.7 : please just use this latest version you mangy parrot.
 # upcoming features
 - rdp encryption check
 - http methods check
+- snmp check
