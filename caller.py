@@ -217,8 +217,18 @@ def run_testssl(ip_add_of_focus,list_of_ssl_ports,curr_list,folder_name):
         run_command(cmd,name_of_output)
     pass
 
+def countdown(t):
+    while t:
+        mins, secs = divmod(t, 60)
+        timeformat = '{:02d}:{:02d}'.format(mins, secs)
+        print(timeformat, end='\r')
+        time.sleep(1)
+        t -= 1
+    print("[*]scan starts now.")
+
 '''
 final actions
 '''
-time.sleep(wait)
+#time.sleep(wait)
+countdown(wait)
 action_on_files(lists)
