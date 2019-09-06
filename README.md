@@ -30,7 +30,7 @@ no biatches were harmed in the making of this readme. only @5sh073s.
 ver 133.7 : please just use this latest version you mangy parrot.
 
 # upcoming features
-~~- timer for delayed scan~~
+- ~~timer for delayed scan~~
 - improved progress tracking mechanism
 - rdp encryption check
 - http methods check
