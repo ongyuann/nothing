@@ -148,10 +148,10 @@ def run_nmap_tcp(ip_add_of_focus,curr_list,folder_name):
     if nmap_option == "both":
         cmd_tcp = cmd + "-sS " + ip_add_of_focus
         name_of_output_tcp = name_of_output + "_tcp_" + ip_add_of_focus + ".txt"
-        cmd_tcp += "-oN " + name_of_output_tcp + "_backup.txt"
+        cmd_tcp += " -oN " + name_of_output_tcp + "_backup.txt"
         cmd_udp = cmd + "-sU " + ip_add_of_focus
         name_of_output_udp = name_of_output + "_udp_" + ip_add_of_focus + ".txt"
-        cmd_udp += "-oN " + name_of_output_udp + "_backup.txt"
+        cmd_udp += " -oN " + name_of_output_udp + "_backup.txt"
         print ("[*]running nmap tcp ...")
         run_command(cmd_tcp,name_of_output_tcp)
         list_of_ssl_ports = rn.reader(name_of_output_tcp)[0]
