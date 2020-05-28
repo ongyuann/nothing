@@ -1,6 +1,6 @@
-## Pre-reqs:\
+## Pre-reqs:
 This script assumes you have testssl located at ~/Desktop/tools/scripts/testssl.sh/testssl.sh\
-\
+
 ## Implementation:
 1. Make a new folder for your scans – recommended to mkdir by date for organization, e.g. *mkdir 8_Jan_2019*
 2. Then prepare a list/many lists of IP addresses you want to scan.
@@ -19,11 +19,10 @@ This script assumes you have testssl located at ~/Desktop/tools/scripts/testssl.
 5. Choose between UDP, TCP, both, honey, tea, or me. no just choose first 3 (instructions will be shown anyway). if scan both, just skip
 6. Hit another enter, and wait for the results – results will be stored in folders named in this way: _list1_results_udp_ , _list2_results_tcp_ , etc …
 
-**Have fun**
+## Disclaimer:
+This script takes no responsibilities for whatever happens when you use it.
 
-this script takes no responsibilities for whatever happens when you use it.
-
-## targeted features
+## Targeted features
 - ~~timer for delayed scan~~
 - improved progress tracking mechanism
 - rdp encryption check
