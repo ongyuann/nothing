@@ -13,34 +13,44 @@ print("** Please first ensure text files that contain IP addresses are in the sa
 print("****************************************************************************************")
 print("\nEnter the text files that contains the IP addresses (if more than 1 list, please separate by comma, e.g. list1,list2)")
 lists = input("list: ")
-print("\nPlease enter time delay till scan starts (in minutes) - if no, skip")
+print("\nPlease enter time delay till scan starts (in minutes) - if immediate, skip")
 try:
     wait = input("time in mins: ")
     wait = int(wait)
 except:
     wait = 0
 wait = wait*60
-print("\nScan 1000 ports only? if 'yes', we go, if All Ports, skip, if junk, All Ports for you")
+print("\nScan [1]1000 ports or [2]All Ports?\n[*]if 1000, type '1', if All Ports, type '2' [default=1000 ports]")
 try:
     nmap_1000ports = input("decision: ")
+    if re.findall("2",nmap_1000ports):
+        nmap_1000ports = False
+    else:
+        nmap_1000ports = True
 except:
-    nmap_1000ports = False
-print("\n[1]UDP, [2]TCP or [3]both? [**WARNING: BOTH TAKES FOREVER**]\n[*]if UDP, type '1' or 'udp', if TCP, type '2' or 'tcp', if both, skip or type '3' if you kiasu")
+    nmap_1000ports = True
+print("\n[1]TCP [2]UDP [3]both? [**WARNING: BOTH TAKES FOREVER**]\n[*]if TCP, type '1' or 'tcp', if UDP, type '2' or 'udp', if both, type '3' or 'both'. [default=TCP]")
 try:
     nmap_option = input("option: ")
-    if re.findall("1|udp",nmap_option):
-        nmap_option = "udp"
-    elif re.findall("2|tcp",nmap_option):
+    if re.findall("1|tcp",nmap_option):
         nmap_option = "tcp"
+    elif re.findall("2|udp",nmap_option):
+        nmap_option = "udp"
+    elif re.findall("3",nmap_option):
+        nmap_option = "both
     else:
-        nmap_option = "both"
+        nmap_option = "tcp"
 except:
-    nmap_option = "both"
-print("\nThe sslscan / testssl scans want colour or no colour? If yes, say 'yes', if no, skip")
+    nmap_option = "tcp"
+print("\nChoose if you want [1]with colour or [2]no colour for sslscan / testssl scans\n[*][default=with colour]")
 try:
-    want_colour = input("so want?: ")
+    want_colour = input("option: ")
+    if re.findall("2",want_colour):
+        want_colour = False
+    else:
+        want_colour = True
 except:
-    want_colour = False
+    want_colour = True
 print("\nOK no more questions\n") 
 
 lists = lists.replace(" ","").split(',')
