@@ -37,7 +37,7 @@ try:
     elif re.findall("2|udp",nmap_option):
         nmap_option = "udp"
     elif re.findall("3",nmap_option):
-        nmap_option = "both
+        nmap_option = "both"
     else:
         nmap_option = "tcp"
 except:
