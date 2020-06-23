@@ -1,5 +1,5 @@
 ## Pre-reqs:
-This script assumes you have testssl located at `~/Desktop/tools/scripts/testssl.sh/testssl.sh`
+This script assumes you have testssl located at `~/Desktop/tools/testssl.sh/testssl.sh`
 
 ## Implementation:
 1. Make a new folder for your scans – recommended to mkdir by date for organization, e.g. *mkdir 8_Jan_2019*
