@@ -24,6 +24,7 @@ This script takes no responsibilities for whatever happens when you use it.
 
 ## Targeted features
 - ~~timer for delayed scan~~
+- "teller" -> runs command in new linux terminal tab
 - improved progress tracking mechanism
 - rdp encryption check
 - http methods check
